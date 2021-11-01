@@ -1,0 +1,46 @@
+Texas Instruments TAS5760 General purpose class-D amplifier.
+
+The codec is controlled through and I2C interface. It also has an optional
+speaker shutdown(SPK_SD) signal which can be wired to a GPIO.
+
+Required properties:
+
+- compatible: "ti, tas5760"
+- reg : The I2C address of the device
+- #sound-dai-cells: must be equal to 0
+
+Optional properties:
+
+- spk-sd-gpios: GPIO specifier for TAS5760's active low speaker shutdown line
+- hw_params: subnode to specify the config parameters used for initialisation
+  of chip. It consists of the following optional properties:
+  	- pbtl-mode: selection for PBTL/BTL mode
+	- pbtl-right-channel: channel selection for PBTL mode
+	- volume-fading: enable/disable volume fading
+	- digital-clip: value for adjusting digital clip level
+	  range: (0 to 0xFFFFF)
+	- digital-boost: digital gain of the amplifier
+	  possible values(dB): 0,6,12,18
+	- analog-gain: value for adjusting analog gain of the amplifier
+	  possible values(0.1 dBV): 192, 226, 250
+	- pwm-rate: control for pwm output swtching rate
+	  range: (0 to 7)
+
+Example:
+	tas5760@06c {
+		compatible: "ti,tas5760";
+		reg = <0x6c>;
+		#sound-dai-cells = <0>;
+
+		spk-sd-gpios = <&gpio1 5 GPIO_ACTIVE_LOW>;
+
+		hw_params {
+			pbtl-mode;
+			pbtl-right-channel;
+			digital-clip = <0XFFFFF>;
+			volume-fading;
+			digital-boost = <6>;
+			analog-gain = <192>;
+			pwm-rate = <5>;
+		};
+	};

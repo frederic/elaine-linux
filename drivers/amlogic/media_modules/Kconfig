@@ -1,0 +1,154 @@
+menuconfig AMLOGIC_MEDIA_MODULES
+	tristate "Amlogic Media Modules"
+	default y
+    help
+		Amlogic audio video codec pipeline support.
+
+if AMLOGIC_MEDIA_MODULES
+config AMLOGIC_MEDIA_VDEC_MPEG12
+	tristate "Amlogic MPEG video decoder"
+	default y
+    help
+		This option is used to configure Amlogic media
+		For mpeg1& mpeg2 decoder driver,
+		if y this driver with build in.
+		and m for build as modules.
+
+config AMLOGIC_MEDIA_VDEC_MPEG4
+	tristate "Amlogic MPEG4 video decoder"
+	default y
+    help
+		This option is used to configure Amlogic media
+		For mpeg4 decoder driver,
+		if y this driver with build in.
+		and m for build as modules.
+
+config AMLOGIC_MEDIA_VDEC_MPEG4_MULTI
+	tristate "Amlogic MPEG4 multi-instance video decoder"
+	default n
+    help
+		This option is used to configure Amlogic media
+		For mpeg4 multi instance decoder driver,
+		if y this driver with build in.
+		and m for build as modules.
+
+config AMLOGIC_MEDIA_VDEC_VC1
+	tristate "Amlogic VC1 video decoder"
+	default y
+    help
+		This option is used to configure Amlogic media
+		For vc1 decoder driver,
+		if y this driver with build in.
+		and m for build as modules.
+
+config AMLOGIC_MEDIA_VDEC_H264
+	tristate "Amlogic AVC video decoder"
+	default y
+    help
+		This option is used to configure Amlogic media
+		For avc/264 decoder driver,
+		if y this driver with build in.
+		and m for build as modules.
+
+config AMLOGIC_MEDIA_VDEC_H264_MULTI
+	tristate "Amlogic AVC multi-instance video decoder"
+	default y
+    help
+		This option is used to configure Amlogic media
+		For avc/264 multi instance decoder driver,
+		if y this driver with build in.
+		and m for build as modules.
+
+config AMLOGIC_MEDIA_VDEC_H264_MVC
+	tristate "Amlogic AVC MVC video decoder"
+	default n
+    help
+		This option is used to configure Amlogic media
+		For avc/264 mvc decoder driver,
+		if y this driver with build in.
+		and m for build as modules.
+
+config AMLOGIC_MEDIA_VDEC_H265
+	tristate "Amlogic HEVC video decoder"
+	default y
+    help
+		This option is used to configure Amlogic media
+		For hevc/265 decoder driver,
+		if y this driver with build in.
+		and m for build as modules.
+
+config AMLOGIC_MEDIA_VDEC_VP9
+	tristate "Amlogic VP9 video decoder"
+	default y
+    help
+		This option is used to configure Amlogic media
+		For vp9 decoder driver,
+		if y this driver with build in.
+		and m for build as modules.
+
+
+config AMLOGIC_MEDIA_VDEC_MJPEG
+	tristate "Amlogic Motion JPEG video decoder"
+	default n
+    help
+		This option is used to configure Amlogic media
+		For motion jpeg decoder driver,
+		if y this driver with build in.
+		and m for build as modules.
+
+config AMLOGIC_MEDIA_VDEC_MJPEG_MULTI
+	tristate "Amlogic Motion JPEG multi-instance video decoder"
+	default n
+    help
+		This option is used to configure Amlogic media
+		For motion jpeg multi instance decoder driver,
+		if y this driver with build in.
+		and m for build as modules.
+
+config AMLOGIC_MEDIA_VDEC_REAL
+	tristate "Amlogic Real Media video decoder"
+	default n
+    help
+		This option is used to configure Amlogic media
+		For real video decoder driver,
+		if y this driver with build in.
+		and m for build as modules.
+
+config AMLOGIC_MEDIA_VDEC_AVS
+	tristate "Amlogic AVS video decoder"
+	default n
+    help
+		This option is used to configure Amlogic media
+		For china AVS video decoder driver,
+		if y this driver with build in.
+		and m for build as modules.
+
+config AMLOGIC_MEDIA_VDEC_YUV
+       tristate "Amlogic YUV video decoder"
+       select VIDEOBUF2_DMA_CONTIG
+       default y
+    help
+               This option is used to configure Amlogic media
+               For YUV SW decoder V4L2 driver,
+               if y this driver with build in.
+               and m for build as modules.
+
+config AMLOGIC_MEDIA_VENC_H264
+	tristate "Amlogic AVC video encoder"
+	default n
+    help
+		This option is used to configure Amlogic media
+		For 264 video encoder driver,
+		if y this driver with build in.
+		and m for build as modules.
+
+config AMLOGIC_MEDIA_VENC_H265
+	tristate "Amlogic HEVC video encoder"
+	default n
+    help
+		This option is used to configure Amlogic media
+		For 265 video encoder driver,
+		if y this driver with build in.
+		and m for build as modules.
+
+endif

@@ -1,0 +1,34 @@
+/*
+ * arch/arm64/boot/dts/amlogic/fct_newman-p1.dts
+ *
+ * Copyright (C) 2017 Amlogic, Inc. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ */
+
+#include "newman-p1.dts"
+/ {
+	gpio_key {
+		status = "disable";
+	};
+}; /* end of / */
+
+&dwc2_a {
+	compatible = "amlogic, dwc2";
+	controller-type = <3>; /** 1: host, 2: device, 3: OTG */
+};
+
+&i2c_AO {
+	accel: bma456@18 {
+		status = "disable";
+	};
+};

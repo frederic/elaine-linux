@@ -1,0 +1,83 @@
+/*
+ * arch/arm64/boot/dts/amlogic/newman-bx-partition.dtsi
+ *
+ * Copyright (C) 2017 Amlogic, Inc. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ */
+
+/ {
+	partitions: partitions{
+		parts = <10>;
+		part-0 = <&fts>;
+		part-1 = <&factory>;
+		part-2 = <&recovery>;
+		part-3 = <&boot>;
+		part-4 = <&system>;
+		part-5 = <&cache>;
+		part-6 = <&fct>;
+		part-7 = <&sysconfig>;
+		part-8 = <&migration>;
+		part-9 = <&buf>;
+
+		fts:fts{
+			pname = "fts";
+			size = <0x0 0x400000>;
+			mask = <1>;
+		};
+		factory:factory{
+			pname = "factory";
+			size = <0x0 0x2000000>;
+			mask = <1>;
+		};
+		recovery:recovery{
+			pname = "recovery";
+			size = <0x0 0x2000000>;
+			mask = <1>;
+		};
+		boot:boot{
+			pname = "boot";
+			size = <0x0 0x2000000>;
+			mask = <1>;
+		};
+		system:system{
+			pname = "system";
+			size = <0x0 0x4F000000>;
+			mask = <1>;
+		};
+		cache:cache{
+			pname = "cache";
+			size = <0x0 0x80000000>;
+			mask = <4>;
+		};
+		fct:fct{
+			pname = "fct";
+			size = <0x0 0x4000000>;
+			mask = <4>;
+		};
+		sysconfig:sysconfig{
+			pname = "sysconfig";
+			size = <0x0 0x100000>;
+			mask = <4>;
+		};
+		migration:migration{
+			pname = "migration";
+			size = <0x0 0x700000>;
+			mask = <4>;
+		};
+		buf:buf{
+			pname = "buf";
+			size = <0xffffffff 0xffffffff>;
+			mask = <4>;
+		};
+	};
+}; /* end of / */

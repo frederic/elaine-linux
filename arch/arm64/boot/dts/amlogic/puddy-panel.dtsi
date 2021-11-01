@@ -1,0 +1,120 @@
+/*
+ * arch/arm64/boot/dts/amlogic/puddy-panel.dtsi
+ *
+ * Copyright (C) 2019 Amlogic, Inc. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ */
+
+/ {
+	lcd{
+		compatible = "amlogic, lcd-g12a";
+		dev_name = "lcd";
+		mode = "tablet";
+		status = "okay";
+		key_valid = <0>;
+		clocks = <&clkc CLKID_MIPI_DSI_HOST
+			&clkc CLKID_MIPI_DSI_PHY
+			&clkc CLKID_DSI_MEAS_COMP
+			&clkc CLKID_VCLK2_ENCL
+			&clkc CLKID_VCLK2_VENCL>;
+		clock-names = "dsi_host_gate",
+			"dsi_phy_gate",
+			"dsi_meas",
+			"encl_top_gate",
+			"encl_int_gate";
+		reg = <0x0 0xffd07000 0x0 0x400
+			   0x0 0xff644000 0x0 0x2000>;
+		interrupts = <0 3 1>;
+		interrupt-names = "vsync";
+		pinctrl_version = <2>; /* for uboot */
+
+		/* power type:
+		 *    (0=cpu_gpio, 1=pmu_gpio, 2=signal,3=extern, 0xff=ending)
+		 * power index:
+		 *    (point gpios_index, or extern_index,0xff=invalid)
+		 * power value:(0=output low, 1=output high, 2=input)
+		 * power delay:(unit in ms)
+		 */
+		lcd_cpu-gpios = <&gpio GPIOZ_11 GPIO_ACTIVE_HIGH>;
+		lcd_cpu_gpio_names = "GPIOZ_11";
+
+		inx_dzd_8{
+			model_name = "P080DZD";
+			interface = "mipi";
+			basic_setting = <800 1280 /*h_active, v_active*/
+				864 1466 /*h_period, v_period*/
+				8 /*lcd_bits*/
+				800 1280>; /*screen_width, screen_height*/
+			lcd_timing = <14 25 0 /*hs_width,hs_bp,hs_pol*/
+				8 32 0>; /*vs_width,vs_bp,vs_pol*/
+			clk_attr = <0 /*fr_adj_type(0=clock,1=htotal,2=vtotal)*/
+				0 /*clk_ss_level*/
+				1 /*clk_auto_generate*/
+				76000000>; /*pixel_clk(unit in Hz)*/
+			mipi_attr = <4 /*lane_num*/
+				486 /*bit_rate_max(MHz)*/
+				0 /*factor(*100, default 0 for auto)*/
+				1 /*operation_mode_init(0=video, 1=command)*/
+				0 /*operation_mode_display(0=video, 1=command)*/
+				2 /*
+				   *video_mode_type
+				   *(0=sync_pulse,1=sync_event,2=burst)
+				   */
+				0 /*clk_lp_continuous(0=stop,1=continue)*/
+				0>; /*phy_stop_wait(0=auto,1=standard,2=slow)*/
+				/* dsi_init: data_type, num, data... */
+			dsi_init_on = <
+				0xff 120		/* delay 10ms */
+				0xf0 3 0 1 40	/* reset high, delay 30ms */
+				0xfc 2 4 3      /* mipi state check  */
+				0xff 10	/* delay 10 ms */
+				0x05 1 0x11
+				0xff 100
+				0x05 1 0x29
+				0xff 0xff>;	/* ending flag */
+			dsi_init_off = <
+				0x05 1 0x28
+				0xff 50
+				0x05 1 0x10
+				0xff 100
+				0xf0 3 0 0 100
+				0xff 0xff>; /* ending flag */
+				/* extern_init: 0xff for invalid */
+			extern_init = <0xff>;
+				/* power step: type,index,value,delay(ms) */
+			power_on_step = <
+					2 0 0 0
+					0xff 0 0 0>;
+			power_off_step = <
+					2 0 0 50
+					0 0 0 100
+					0xff 0 0 0>;
+			backlight_index = <1>;
+		};
+	};
+
+	lcd_extern{
+		compatible = "amlogic, lcd_extern";
+		dev_name = "lcd_extern";
+		status = "okay";
+		key_valid = <0>;
+
+		extern_0{
+			index = <2>;
+			extern_name = "mipi_P070ACB";
+			status = "okay";
+			type = <2>; /* 0=i2c, 1=spi, 2=mipi */
+		};
+	};
+};/* end of panel */
+

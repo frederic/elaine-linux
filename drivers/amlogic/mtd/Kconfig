@@ -1,0 +1,38 @@
+#
+# Amlogic NAND device configuration
+#
+
+menu "Meson NAND Device Support"
+
+config AMLOGIC_NAND
+	bool "Meson NAND flash device"
+	default n
+	depends on MTD_BLOCK
+	depends on MTD_NAND
+	depends on MTD
+	help
+		Amlogic mtd support config.
+		Support for MTD NAND flash on Amlogic Meson platforms
+		Need open in defconfig, set CONFIG_AMLOGIC_NAND=y
+		need check
+
+config AML_NAND_RSV_DTB_ENV_KEY
+	bool "Meson NAND RSV with DTB ENV KEY"
+	default n
+	depends on AMLOGIC_NAND
+	help
+		Amlogic nand driver config.
+		Support rsv part without dtb env key.
+		if use dtb env key in rsv,set AML_NAND_RSV_DTB_ENV_KEY=y
+		otherwise, set it yes
+
+config AML_NAND_SHORT_RSV
+	bool "Meson NAND RSV hold 48 blocks or 8 blocks"
+	default n
+	depends on AMLOGIC_NAND
+	help
+		Amlogic nand driver config.
+		define rsv part holding how many nand blocks.
+		if want rsv part use 8 blocks,set AML_NAND_SHORT_RSV=y
+		otherwise rsv part use 48 blocks.
+endmenu

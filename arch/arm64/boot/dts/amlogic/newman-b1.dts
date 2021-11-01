@@ -1,0 +1,71 @@
+/*
+ * arch/arm64/boot/dts/amlogic/newman-b1.dts
+ *
+ * Copyright (C) 2017 Amlogic, Inc. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ */
+
+/dts-v1/;
+
+#include "mesong12b.dtsi"
+#include "newman-panel.dtsi"
+#include "mesong12a_drm.dtsi"
+#include "newman-common.dtsi"
+#include "newman-bx-partition.dtsi"
+
+&cpu_opp_table1 {
+	opp10 {
+		opp-hz = /bits/ 64 <1908000000>;
+		opp-microvolt = <1022000>;
+	};
+};
+
+&i2c_AO {
+	accel: bma456@18 {
+		status = "disable";
+	};
+};
+
+&aml_tdmc {
+	pinctrl-0 = <&tdmout_c>;
+};
+
+&tdmccodec {
+	prefix-names = "woofer", "tweeter-left", "tweeter-right";
+	sound-dai = <&tas5720_6f &tas5720_6c &tas5720_6d>;
+};
+
+&i2c_AO {
+	tas5720_6c: tas5720@6c {
+		compatible = "ti,tas5720";
+		#sound-dai-cells = <0>;
+		reg = <0x6c>;
+		status = "okay";
+		spk-sd = <&gpio GPIOH_7 GPIO_ACTIVE_HIGH>;
+	};
+	tas5720_6d: tas5720@6d {
+		compatible = "ti,tas5720";
+		#sound-dai-cells = <0>;
+		reg = <0x6d>;
+		status = "okay";
+	};
+};
+
+/delete-node/ &tas5760_6c;
+/delete-node/ &temp_basedb;
+/delete-node/ &temp_mlb;
+/delete-node/ &temp_lmic;
+/delete-node/ &temp_wifi;
+/delete-node/ &temp_audio;
+/delete-node/ &temp_soc;
+/delete-node/ &temp_humidity;

@@ -1,0 +1,16 @@
+#
+# Focaltech Touchscreen driver configuration
+#
+
+config TOUCHSCREEN_FTS_8201
+        bool "Focaltech Touchscreen FT8201"
+		depends on I2C
+		default n
+		help
+		  Say Y here if you have Focaltech FT8201 touch panel.
+		  If unsure, say N.
+
+config TOUCHSCREEN_FTS_8201_DIRECTORY
+    string "Focaltech 8201 ts directory name"
+    default "focaltech_touch_ft8201"
+    depends on TOUCHSCREEN_FTS_8201

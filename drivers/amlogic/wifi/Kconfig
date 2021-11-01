@@ -1,0 +1,11 @@
+config AMLOGIC_WIFI
+	bool "WiFi support"
+	select WIRELESS_EXT
+	select WEXT_PRIV
+	default n
+	help
+		select y to support wifi
+
+if AMLOGIC_WIFI
+  source "../dhd-driver/bcmdhd.1.363.59.144.x.cn/Kconfig"
+endif

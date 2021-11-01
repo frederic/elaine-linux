@@ -1,0 +1,16 @@
+#
+# Goodix Touchscreen driver configuration
+#
+
+config TOUCHSCREEN_GTS
+        bool "Goodix Touchscreen"
+		depends on I2C
+		default n
+		help
+		  Say Y here if you have Goodix touch panel.
+		  If unsure, say N.
+
+config TOUCHSCREEN_GTS_DIRECTORY
+    string "Goodix ts directory name"
+    default "goodix_touch"
+    depends on TOUCHSCREEN_GTS

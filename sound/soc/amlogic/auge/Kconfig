@@ -1,0 +1,18 @@
+menuconfig AMLOGIC_SND_SOC_AUGE
+	bool "Amlogic Auge ASoC"
+	default n
+	help
+		Say Y or M if you want to add support for codecs attached to
+		the Amlogic Asoc interface. You will also need
+		to select the audio interfaces to support below.
+
+if AMLOGIC_SND_SOC_MESON
+
+config AUGE_PDM_TDM_SRC_CLK_HIGH_RATE
+    depends on AMLOGIC_SND_SOC_AUGE
+	bool "Amlogic Auge PDM TDM same src clk use high rate"
+	default n
+	help
+	    Say Y if you want to make PDM TDM use use high rate.
+
+endif # AMLOGIC_SND_SOC_MESON

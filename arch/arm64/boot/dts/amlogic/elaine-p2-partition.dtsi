@@ -1,0 +1,124 @@
+/*
+ * arch/arm64/boot/dts/amlogic/newman-bx-partition.dtsi
+ *
+ * Copyright (C) 2017 Amlogic, Inc. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ */
+
+/ {
+	partitions: partitions{
+		parts = <17>;
+		part-0 = <&fts>;
+		part-1 = <&factory>;
+		part-2 = <&misc>;
+		part-3 = <&tpl_a>;
+		part-4 = <&tpl_b>;
+		part-5 = <&vbmeta_a>;
+		part-6 = <&vbmeta_b>;
+		part-7 = <&reserved_a>;
+		part-8 = <&boot_a>;
+		part-9 = <&boot_b>;
+		part-10 = <&system_a>;
+		part-11 = <&system_b>;
+		part-12 = <&data>;
+		part-13 = <&reserved_b>;
+		part-14 = <&reserved_c>;
+		part-15 = <&cache>;
+		part-16 = <&buf>;
+		fts:fts{
+			pname = "fts";
+			size = <0x0 0x400000>;
+			mask = <1>;
+		};
+		factory:factory{
+			pname = "factory";
+			size = <0x0 0x2000000>;
+			mask = <1>;
+		};
+		misc:misc{
+			pname = "misc";
+			size = <0x0 0x100000>;
+			mask = <1>;
+		};
+		tpl_a:tpl_a{
+			pname = "tpl_a";
+			size = <0x0 0x800000>;
+			mask = <1>;
+		};
+		tpl_b:tpl_b{
+			pname = "tpl_b";
+			size = <0x0 0x800000>;
+			mask = <1>;
+		};
+		vbmeta_a:vbmeta_a{
+			pname = "vbmeta_a";
+			size = <0x0 0x10000>;
+			mask = <1>;
+		};
+		vbmeta_b:vbmeta_b{
+			pname = "vbmeta_b";
+			size = <0x0 0x10000>;
+			mask = <1>;
+		};
+		reserved_a:reserved_a{
+			pname = "reserved_a";
+			size = <0x0 0x700000>;
+			mask = <1>;
+		};
+		boot_a:boot_a{
+			pname = "boot_a";
+			size = <0x0 0x4000000>;
+			mask = <1>;
+		};
+		boot_b:boot_b{
+			pname = "boot_b";
+			size = <0x0 0x4000000>;
+			mask = <1>;
+		};
+		system_a:system_a{
+			pname = "system_a";
+			size = <0x0 0x38400000>;
+			mask = <1>;
+		};
+		system_b:system_b{
+			pname = "system_b";
+			size = <0x0 0x38400000>;
+			mask = <1>;
+		};
+		data:data{
+			pname = "data";
+			size = <0x0 0x57cf0000>;
+			mask = <4>;
+		};
+		reserved_b:reserved_b{
+			pname = "reserved_b";
+			size = <0x0 0x2000000>;
+			mask = <1>;
+		};
+		reserved_c:reserved_c{
+			pname = "reserved_c";
+			size = <0x0 0x10000>;
+			mask = <1>;
+		};
+		cache:cache{
+			pname = "cache";
+			size = <0x0 0x3200000>;
+			mask = <4>;
+		};
+		buf:buf{
+			pname = "buf";
+			size = <0xffffffff 0xffffffff>;
+			mask = <4>;
+		};
+	};
+}; /* end of / */
