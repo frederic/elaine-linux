@@ -6,8 +6,8 @@ set -o errtrace
 trap 'echo Fatal error: script ${exec_name} aborting at line $LINENO, command \"$BASH_COMMAND\" returned $?; exit 1' ERR
 
 arch=arm64
-cross_compile=../prebuilt/toolchain/aarch64/bin/aarch64-cros-linux-gnu-
-cc_clang=../prebuilt/toolchain/aarch64/bin/aarch64-cros-linux-gnu-clang
+cross_compile=aarch64-linux-gnu-
+cc_clang=aarch64-linux-gnu-gcc
 
 cpu_num=$(grep -c processor /proc/cpuinfo)
 readonly fctname="fct"
@@ -67,7 +67,7 @@ function build_kernel(){
   # Make a clean build and check .config and defconfig if different then abort.
   # make clean
   run_kernel_make $cross_compile $cpu_num $arch $defconfig_file_name
-  diff .config arch/arm64/configs/${defconfig_file_name}
+  #diff .config arch/arm64/configs/${defconfig_file_name}
 
   run_kernel_make $cross_compile $cpu_num $arch all
 

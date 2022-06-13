@@ -19,8 +19,8 @@ endif
 # These 2 marked sentence is just for generate warning messages
 #KBUILD_CFLAGS += -Wno-error=larger-than=28792
 #KBUILD_CFLAGS += -Wno-error=stack-usage=1856
-KBUILD_CFLAGS += -Wno-error=typedef-redefinition
-KBUILD_CFLAGS += -Wno-error=unneeded-internal-declaration
+#KBUILD_CFLAGS += -Wno-error=typedef-redefinition
+#KBUILD_CFLAGS += -Wno-error=unneeded-internal-declaration
 
 obj-$(CONFIG_CPU_FREQ)		+= cpufreq/
 
